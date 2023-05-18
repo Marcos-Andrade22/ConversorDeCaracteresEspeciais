@@ -62,7 +62,7 @@ namespace ConversorDeCaracteresEspeciais
         */
         static string ConverterSetaEBarra(StringBuilder sb)
         {
-            string textoConvertido = sb.ToString().Replace("-->", "em diante").Replace("//", "-"); ;           
+            string textoConvertido = sb.ToString().Replace("-->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
             return textoConvertido;
         }
     }
