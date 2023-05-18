@@ -133,7 +133,7 @@ namespace ConversorDeCaracteresEspeciais
                 }
             }
         }
-        //objetivo: conseguir colocar um texto inteiro sem precisar de ir linha por linha e criar varios strinbuilders
+        //objetivo: ao invés de retornar linha por linha, retornar o texto inteiro formatado
         /*
             Accelo - 915 C - OM 904 LA // 2007 -->
             Accelo - 915 C - OM 904 LA // 2007 -->
