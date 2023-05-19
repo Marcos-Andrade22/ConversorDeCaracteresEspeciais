@@ -49,7 +49,7 @@ namespace ConversorDeCaracteresEspeciais
             Console.WriteLine("Código da Peça: ");
             Console.WriteLine(codigoPeca);
             Console.WriteLine("\n");
-            Console.WriteLine("SKU: " + codigoPeca +"\n" +  codigoOriginal);
+            Console.WriteLine("SKU: " + codigoPeca + " " +  codigoOriginal);
             Console.WriteLine("Código Original: ");
             Console.WriteLine(codigoOriginal);
             Console.WriteLine("\n");
