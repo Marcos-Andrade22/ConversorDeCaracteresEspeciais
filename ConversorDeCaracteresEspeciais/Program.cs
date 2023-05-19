@@ -49,13 +49,19 @@ namespace ConversorDeCaracteresEspeciais
             Console.WriteLine("Código da Peça: ");
             Console.WriteLine(codigoPeca);
             Console.WriteLine("\n");
+            Console.WriteLine("SKU: " + codigoPeca + codigoOriginal);
             Console.WriteLine("Código Original: ");
             Console.WriteLine(codigoOriginal);
+            Console.WriteLine("\n");
+            Console.WriteLine("Marca: WEGA - Peça Genuína");
             Console.WriteLine("\n");
             Console.WriteLine("Intercambialidade: ");
 
         }
-        //objetivo: ao invés de retornar linha por linha, retornar o texto inteiro formatado
+        //objetivo: Colocar um suporte para que leia um caractere quando está sozinho e quando está junto com outros termos
+        //Exemplo: > com outros termos , e > separado
+        //09/14>: > quer dizer em diante
+        //04/15>05/18: > quer dizer até
         /*
             Accelo - 915 C - OM 904 LA // 2007 -->
             Accelo - 915 C - OM 904 LA // 2007 -->
