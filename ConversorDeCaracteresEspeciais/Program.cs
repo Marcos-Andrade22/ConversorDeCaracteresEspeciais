@@ -9,13 +9,20 @@ namespace ConversorDeCaracteresEspeciais
         {
             string textoConv = "";
             string codigoPeca;
-            string codigoOriginal;
+            string codigoOriginal = "";
+            string codigoOri;
             string tipoPeca;
-
+            int qtCodOri;
             Console.WriteLine("Digite o Código da Peça: ");
             codigoPeca = Console.ReadLine();
-            Console.WriteLine("Digite o Código Original: ");
-            codigoOriginal = Console.ReadLine();
+            Console.WriteLine("Quantos Códigos Originais Existem nessa peça?");
+            qtCodOri = Convert.ToInt32(Console.ReadLine());
+            for(int j = 1; j < qtCodOri + 1; j++)
+            {
+                Console.WriteLine("Digite o Código Original " + j + ": ");
+                codigoOri = Console.ReadLine();
+                codigoOriginal += codigoOri + "\n";
+            }
             Console.WriteLine("Digite o tipo da peça(Exemplo: Filtro de Combustível) : ");
             tipoPeca = Console.ReadLine();
             Console.WriteLine("Digite o número de linhas que existem neste texto");
@@ -31,7 +38,12 @@ namespace ConversorDeCaracteresEspeciais
                 textoConv += textoConvertido + "\n";
             }
             Console.WriteLine("Texto convertido:");
+            Console.WriteLine("\n");
+            Console.WriteLine("\n");
+            Console.WriteLine("\n");
             Console.WriteLine(tipoPeca);
+            Console.WriteLine("\n");
+            Console.WriteLine("Montadoras: ");
             Console.WriteLine("\n");
             Console.WriteLine(textoConv);
             Console.WriteLine("Código da Peça: ");
