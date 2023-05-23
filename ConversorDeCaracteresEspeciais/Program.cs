@@ -11,6 +11,7 @@ namespace ConversorDeCaracteresEspeciais
             string codigoPeca;
             string codigoOriginal = "";
             string codigoOri;
+            string origSKU = "";
             string tipoPeca;
             int qtCodOri;
             Console.WriteLine("Digite o Código da Peça: ");
@@ -22,6 +23,10 @@ namespace ConversorDeCaracteresEspeciais
                 Console.WriteLine("Digite o Código Original " + j + ": ");
                 codigoOri = Console.ReadLine();
                 codigoOriginal += codigoOri + "\n";
+                if (j == 1)
+                {
+                    origSKU = codigoOri;
+                }
             }
             Console.WriteLine("Digite o tipo da peça(Exemplo: Filtro de Combustível) : ");
             tipoPeca = Console.ReadLine();
@@ -49,7 +54,7 @@ namespace ConversorDeCaracteresEspeciais
             Console.WriteLine("Código da Peça: ");
             Console.WriteLine(codigoPeca);
             Console.WriteLine("\n");
-            Console.WriteLine("SKU: " + codigoPeca + " " +  codigoOriginal);
+            Console.WriteLine("SKU: " + codigoPeca + " " +  origSKU);
             Console.WriteLine("Código Original: ");
             Console.WriteLine(codigoOriginal);
             Console.WriteLine("\n");
