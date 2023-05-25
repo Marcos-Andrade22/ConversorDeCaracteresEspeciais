@@ -10,86 +10,91 @@ namespace ConversorDeCaracteresEspeciais
             int contPecas = 0;
             while (contPecas < 20)
             {
-
-
-                string textoConv = "";
-                string codigoPeca;
-                string codigoOriginal = "";
-                string codigoOri;
-                string origSKU = "";
-                string tipoPeca;
-                string texto;
-                string catalogo;
-                int linhas;
-                int qtCodOri;
-                string originalSKU = "";
+                
+            
+            string textoConv = "";
+            string codigoPeca;
+            string codigoOriginal = "";
+            string codigoOri;
+            string origSKU = "";
+            string tipoPeca;
+            string texto;
+            string catalogo;
+            int linhas;
+            int qtCodOri;
+            string originalSKU= "";
                 Console.WriteLine("Digite o número de linhas que existem neste texto");
-                linhas = Convert.ToInt32(Console.ReadLine());
-                StringBuilder[] vet = new StringBuilder[linhas];
-                Console.WriteLine("Qual catálogo estaremos usando ?");
-                catalogo = Console.ReadLine();
-                if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
+            linhas = Convert.ToInt32(Console.ReadLine());
+            StringBuilder[] vet = new StringBuilder[linhas];
+            Console.WriteLine("Qual catálogo estaremos usando ?");
+            catalogo = Console.ReadLine();
+            if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
+            {
+                for (int i = 0; i < linhas; i++)
                 {
-                    for (int i = 0; i < linhas; i++)
-                    {
-                        Console.WriteLine("Digite um texto:");
-                        texto = Console.ReadLine();
-                        vet[i] = new StringBuilder();
-                        vet[i].Append(texto);
-                        string textoConvertido = ConversorWega(vet[i]);
-                        textoConv += textoConvertido + "\n";
-                    }
-                }
-                /*if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall")
-                {
-                    for (int k = 0; k < linhas; k++)
-                    {
                     Console.WriteLine("Digite um texto:");
                     texto = Console.ReadLine();
-                    vet[k] = new StringBuilder();
-                    vet[k].Append(texto);
-                    string textoConvertido = ConversorOriginal(vet[k]);
+                    vet[i] = new StringBuilder();
+                    vet[i].Append(texto);
+                    string textoConvertido = ConversorWega(vet[i]);
                     textoConv += textoConvertido + "\n";
-                    }
-                }*/
-                Console.WriteLine("Digite o Código da Peça: ");
-                codigoPeca = Console.ReadLine();
-                Console.WriteLine("Quantos Códigos Originais Existem nessa peça?");
-                qtCodOri = Convert.ToInt32(Console.ReadLine());
-                for (int j = 1; j < qtCodOri + 1; j++)
-                {
-                    Console.WriteLine("Digite o Código Original " + j + ": ");
-                    codigoOri = Console.ReadLine();
-                    codigoOriginal += codigoOri + "\n";
-                    if (j == 1)
-                    {
-                        origSKU = codigoOri;
-                    }
                 }
-                Console.WriteLine("Digite o tipo da peça(Exemplo: Filtro de Combustível) : ");
-                tipoPeca = Console.ReadLine();
+            }
+            /*if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall")
+            {
+                for (int k = 0; k < linhas; k++)
+                {
+                Console.WriteLine("Digite um texto:");
+                texto = Console.ReadLine();
+                vet[k] = new StringBuilder();
+                vet[k].Append(texto);
+                string textoConvertido = ConversorOriginal(vet[k]);
+                textoConv += textoConvertido + "\n";
+                }
+            }*/
+            Console.WriteLine("Digite o Código da Peça: ");
+            codigoPeca = Console.ReadLine();
+            Console.WriteLine("Quantos Códigos Originais Existem nessa peça?");
+            qtCodOri = Convert.ToInt32(Console.ReadLine());
+            for(int j = 1; j < qtCodOri + 1; j++)
+            {
+                Console.WriteLine("Digite o Código Original " + j + ": ");
+                codigoOri = Console.ReadLine();
+                codigoOriginal += codigoOri + "\n";
+                if (j == 1)
+                {
+                    origSKU = codigoOri;
+                }
+            }
+            Console.WriteLine("Digite o tipo da peça(Exemplo: Filtro de Combustível) : ");
+            tipoPeca = Console.ReadLine();
+            
 
 
-
-                Console.WriteLine("Texto convertido:");
-                Console.WriteLine("\n");
-                Console.WriteLine("\n");
-                Console.WriteLine("\n");
-                Console.WriteLine(tipoPeca);
-                Console.WriteLine("\n");
-                Console.WriteLine("Montadoras: ");
-                Console.WriteLine("\n");
-                Console.WriteLine(textoConv);
-                Console.WriteLine("Código da Peça: ");
-                Console.WriteLine(codigoPeca);
-                Console.WriteLine("\n");
-                Console.WriteLine("SKU: " + codigoPeca + " " + origSKU);
-                Console.WriteLine("Código Original: ");
-                Console.WriteLine(codigoOriginal);
-                Console.WriteLine("\n");
-                Console.WriteLine("Marca: WEGA - Peça Genuína");
-                Console.WriteLine("\n");
-                Console.WriteLine("Intercambialidade: ");
+            Console.WriteLine("Texto convertido:");
+            Console.WriteLine("\n");
+            Console.WriteLine("\n");
+            Console.WriteLine("\n");
+            Console.WriteLine(tipoPeca);
+            Console.WriteLine("\n");
+            Console.WriteLine("Montadoras: ");
+            Console.WriteLine("\n");
+            Console.WriteLine(textoConv);
+            Console.WriteLine("Código da Peça: ");
+            Console.WriteLine(codigoPeca);
+            Console.WriteLine("\n");
+            Console.WriteLine("SKU: " + codigoPeca + " " +  origSKU);
+            Console.WriteLine("Código Original: ");
+            Console.WriteLine(codigoOriginal);
+            Console.WriteLine("\n");
+            Console.WriteLine("Marca: WEGA - Peça Genuína");
+            Console.WriteLine("\n");
+            Console.WriteLine("Intercambialidade: ");
+            Console.WriteLine("Altura: ");
+            Console.WriteLine("Comprimento:");
+            Console.WriteLine("Largura:");
+            Console.WriteLine("Diâmetro Externo: ");
+            Console.WriteLine("Diâmetro Interno: ");
                 contPecas++;
             }
 
