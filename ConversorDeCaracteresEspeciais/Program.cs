@@ -90,6 +90,8 @@ namespace ConversorDeCaracteresEspeciais
             Console.WriteLine("Marca: WEGA - Peça Genuína");
             Console.WriteLine("\n");
             Console.WriteLine("Intercambialidade: ");
+            Console.WriteLine("\n");
+            Console.WriteLine("Observação:");
             Console.WriteLine("Altura: ");
             Console.WriteLine("Comprimento:");
             Console.WriteLine("Largura:");
