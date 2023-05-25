@@ -115,7 +115,7 @@ namespace ConversorDeCaracteresEspeciais
         */
         static string ConversorWega(StringBuilder sb)
         {
-            string textoConvertido = sb.ToString().Replace("-->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
+            string textoConvertido = sb.ToString().Replace("-->", "em diante").Replace("->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
             return textoConvertido;
         }
         /*static string ConversorOriginal(StringBuilder sb)
