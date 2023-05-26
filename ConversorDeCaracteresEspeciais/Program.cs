@@ -40,7 +40,7 @@ namespace ConversorDeCaracteresEspeciais
                     textoConv += textoConvertido + "\n";
                 }
             }
-            /*if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall")
+            if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall" || catalogo == "Original" || catalogo == "original" || catalogo == "ORIGINAL")
             {
                 for (int k = 0; k < linhas; k++)
                 {
@@ -51,7 +51,7 @@ namespace ConversorDeCaracteresEspeciais
                 string textoConvertido = ConversorOriginal(vet[k]);
                 textoConv += textoConvertido + "\n";
                 }
-            }*/
+            }
             Console.WriteLine("Digite o Código da Peça: ");
             codigoPeca = Console.ReadLine();
             Console.WriteLine("Quantos Códigos Originais Existem nessa peça?");
@@ -115,14 +115,15 @@ namespace ConversorDeCaracteresEspeciais
         */
         static string ConversorWega(StringBuilder sb)
         {
-            string textoConvertido = sb.ToString().Replace("-->", "em diante").Replace("->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
+            string textoConvertido = sb.ToString().Replace("-->", "em diante").Replace("-->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
             return textoConvertido;
         }
-        /*static string ConversorOriginal(StringBuilder sb)
-        {            
+        static string ConversorOriginal(StringBuilder sb)
+        {
+            string textoConvertido = "";
             string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string linha in linhas)
-            {
+            {                
                 int primeiraPosicao = linha.IndexOf('>');
                 int ultimaPosicao = linha.LastIndexOf('>');
                 int proximaPosicao = linha.IndexOf('>', primeiraPosicao + 1);
@@ -130,11 +131,18 @@ namespace ConversorDeCaracteresEspeciais
                 //esse if quer dizer que o '>' esta entre dois termos
                 if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
                 {
-                    sb.Append(linha.Replace(">", "até", primeiraPosicao, 1).replace());
+                    sb.Append(linha.Replace(">", "até"));
+                    textoConvertido = sb.ToString();
+                    return textoConvertido;
                 }
-                return "a";
+                else
+                {
+                    sb.Append(linha.Replace(">", "em diante"));
+                    textoConvertido = sb.ToString();
+                }
             }
-        }*/
+            return textoConvertido;
+        }
     }/*
       * if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
     {
