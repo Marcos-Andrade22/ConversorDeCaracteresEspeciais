@@ -87,7 +87,14 @@ namespace ConversorDeCaracteresEspeciais
             Console.WriteLine("Código Original: ");
             Console.WriteLine(codigoOriginal);
             Console.WriteLine("\n");
-            Console.WriteLine("Marca: WEGA - Peça Genuína");
+                if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
+                {
+                    Console.WriteLine("Marca: WEGA - Peça Genuína");
+                }
+                else
+                {
+                    Console.WriteLine("Marca: ORIGINALL - Peça Genuína");
+                }
             Console.WriteLine("\n");
             Console.WriteLine("Intercambialidade: ");
             Console.WriteLine("\n");
@@ -106,42 +113,44 @@ namespace ConversorDeCaracteresEspeciais
         //09/14>: > quer dizer em diante
         //04/15>05/18: > quer dizer até
         /*
-            Gol 1.8 (Sport , GTI) OL 203 // 15 > \n
-            Gol 1.8 (Sport , GTI) OL 203 // 06 > 10 \n
-            Accelo - 915 C - OM 904 LA // 2007 --> \n
-            Accelo - 915 C - OM 904 LA // 2007 --> \n
-            Sprinter 413 - OM 611 2.2L // 2002 --> \n
-            Sprinter 411 - OM 611 2.2L // 2002 --> \n
+            Gol 1.8 (Sport , GTI) OL 203 // 15 >
+            Gol 1.8 (Sport , GTI) // 06 > 10
+            Accelo - 915 C - OM 904 LA // 2007 --> 
+            Accelo - 915 C - OM 904 LA // 2007 --> 
+            Sprinter 413 - OM 611 2.2L // 2002 --> 
+            Sprinter 411 - OM 611 2.2L // 2002 --> 
         */
         static string ConversorWega(StringBuilder sb)
         {
-            string textoConvertido = sb.ToString().Replace("-->", "em diante").Replace("-->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
-            return textoConvertido;
+             sb.Replace("-->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
+             return sb.ToString();
         }
         static string ConversorOriginal(StringBuilder sb)
         {
-            string textoConvertido = "";
             string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string linha in linhas)
-            {                
+            {
                 int primeiraPosicao = linha.IndexOf('>');
                 int ultimaPosicao = linha.LastIndexOf('>');
                 int proximaPosicao = linha.IndexOf('>', primeiraPosicao + 1);
                 //index do '>' nao pode ser negativo
                 //esse if quer dizer que o '>' esta entre dois termos
-                if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
+                Console.WriteLine("Index Of: {0}", primeiraPosicao);
+                Console.WriteLine("Last Index Of: {0}", ultimaPosicao);
+                if (primeiraPosicao >= 0)
                 {
-                    sb.Append(linha.Replace(">", "até"));
-                    textoConvertido = sb.ToString();
-                    return textoConvertido;
-                }
-                else
-                {
-                    sb.Append(linha.Replace(">", "em diante"));
-                    textoConvertido = sb.ToString();
+                    if (ultimaPosicao == linha.Length - 1)
+                    {
+                        sb.Replace(">", "em diante");
+                    }
+                    else
+                    {
+                        sb.Replace(">", "até");
+                    }
+
                 }
             }
-            return textoConvertido;
+            return sb.ToString();
         }
     }/*
       * if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
