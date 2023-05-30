@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Xml;
 
 namespace ConversorDeCaracteresEspeciais
 {
@@ -171,7 +172,21 @@ namespace ConversorDeCaracteresEspeciais
         }
         static string ConversorTecfil(StringBuilder sb)
         {
-            sb.Replace(">", "em diante").Replace("//", "-").Replace("/", ". ").Replace("--", "até");
+            string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            
+            foreach (string linha in linhas)
+            {
+                int dezNonosTexto= ((linha.Length / 10) * 9);
+                sb.Replace(">", "em diante").Replace("//", "-").Replace("--", "até");
+                if (linha.IndexOf('/') < dezNonosTexto)
+                {
+                    sb.Replace("/", " , ");
+                }
+                else if (linha.IndexOf('/') > dezNonosTexto)
+                {
+                    sb.Replace("/", ". ");
+                }
+            }
             return sb.ToString();
         }
     }
