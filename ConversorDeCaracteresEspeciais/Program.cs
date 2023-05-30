@@ -10,100 +10,117 @@ namespace ConversorDeCaracteresEspeciais
             int contPecas = 0;
             while (contPecas < 20)
             {
-                
-            
-            string textoConv = "";
-            string codigoPeca;
-            string codigoOriginal = "";
-            string codigoOri;
-            string origSKU = "";
-            string tipoPeca;
-            string texto;
-            string catalogo;
-            int linhas;
-            int qtCodOri;
-            string originalSKU= "";
+
+
+                string textoConv = "";
+                string codigoPeca;
+                string codigoOriginal = "";
+                string codigoOri;
+                string origSKU = "";
+                string tipoPeca;
+                string texto;
+                string catalogo;
+                int linhas;
+                int qtCodOri;
+                string originalSKU = "";
                 Console.WriteLine("Digite o número de linhas que existem neste texto");
-            linhas = Convert.ToInt32(Console.ReadLine());
-            StringBuilder[] vet = new StringBuilder[linhas];
-            Console.WriteLine("Qual catálogo estaremos usando ?");
-            catalogo = Console.ReadLine();
-            if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
-            {
-                for (int i = 0; i < linhas; i++)
+                linhas = Convert.ToInt32(Console.ReadLine());
+                StringBuilder[] vet = new StringBuilder[linhas];
+                Console.WriteLine("Qual catálogo estaremos usando ?");
+                catalogo = Console.ReadLine();
+                if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
                 {
-                    Console.WriteLine("Digite um texto:");
-                    texto = Console.ReadLine();
-                    vet[i] = new StringBuilder();
-                    vet[i].Append(texto);
-                    string textoConvertido = ConversorWega(vet[i]);
-                    textoConv += textoConvertido + "\n";
+                    for (int i = 0; i < linhas; i++)
+                    {
+                        Console.WriteLine("Digite um texto:");
+                        texto = Console.ReadLine();
+                        vet[i] = new StringBuilder();
+                        vet[i].Append(texto);
+                        string textoConvertido = ConversorWega(vet[i]);
+                        textoConv += textoConvertido + "\n";
+                    }
                 }
-            }
-            if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall" || catalogo == "Original" || catalogo == "original" || catalogo == "ORIGINAL")
-            {
-                for (int k = 0; k < linhas; k++)
+                else if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall" || catalogo == "Original" || catalogo == "original" || catalogo == "ORIGINAL")
                 {
-                Console.WriteLine("Digite um texto:");
-                texto = Console.ReadLine();
-                vet[k] = new StringBuilder();
-                vet[k].Append(texto);
-                string textoConvertido = ConversorOriginal(vet[k]);
-                textoConv += textoConvertido + "\n";
+                    for (int k = 0; k < linhas; k++)
+                    {
+                        Console.WriteLine("Digite um texto:");
+                        texto = Console.ReadLine();
+                        vet[k] = new StringBuilder();
+                        vet[k].Append(texto);
+                        string textoConvertido = ConversorOriginal(vet[k]);
+                        textoConv += textoConvertido + "\n";
+                    }
                 }
-            }
-            Console.WriteLine("Digite o Código da Peça: ");
-            codigoPeca = Console.ReadLine();
-            Console.WriteLine("Quantos Códigos Originais Existem nessa peça?");
-            qtCodOri = Convert.ToInt32(Console.ReadLine());
-            for(int j = 1; j < qtCodOri + 1; j++)
-            {
-                Console.WriteLine("Digite o Código Original " + j + ": ");
-                codigoOri = Console.ReadLine();
-                codigoOriginal += codigoOri + "\n";
-                if (j == 1)
+                else if (catalogo == "Tecfil" || catalogo == "tecfil" || catalogo == "TECFIL" || catalogo == "TecFil")
                 {
-                    origSKU = codigoOri;
+                    for (int w = 0; w < linhas; w++)
+                    {
+                        Console.WriteLine("Digite um texto:");
+                        texto = Console.ReadLine();
+                        vet[w] = new StringBuilder();
+                        vet[w].Append(texto);
+                        string textoConvertido = ConversorTecfil(vet[w]);
+                        textoConv += textoConvertido + "\n";
+                    }
                 }
-            }
-            Console.WriteLine("Digite o tipo da peça(Exemplo: Filtro de Combustível) : ");
-            tipoPeca = Console.ReadLine();
-            
+                Console.WriteLine("Digite o Código da Peça: ");
+                codigoPeca = Console.ReadLine();
+                Console.WriteLine("Quantos Códigos Originais Existem nessa peça?");
+                qtCodOri = Convert.ToInt32(Console.ReadLine());
+                for (int j = 1; j < qtCodOri + 1; j++)
+                {
+                    Console.WriteLine("Digite o Código Original " + j + ": ");
+                    codigoOri = Console.ReadLine();
+                    codigoOriginal += codigoOri + "\n";
+                    if (j == 1)
+                    {
+                        origSKU = codigoOri;
+                    }
+                }
+                Console.WriteLine("Digite o tipo da peça(Exemplo: Filtro de Combustível) : ");
+                tipoPeca = Console.ReadLine();
 
 
-            Console.WriteLine("Texto convertido:");
-            Console.WriteLine("\n");
-            Console.WriteLine("\n");
-            Console.WriteLine("\n");
-            Console.WriteLine(tipoPeca);
-            Console.WriteLine("\n");
-            Console.WriteLine("Montadoras: ");
-            Console.WriteLine("\n");
-            Console.WriteLine(textoConv);
-            Console.WriteLine("Código da Peça: ");
-            Console.WriteLine(codigoPeca);
-            Console.WriteLine("\n");
-            Console.WriteLine("SKU: " + codigoPeca + " " +  origSKU);
-            Console.WriteLine("Código Original: ");
-            Console.WriteLine(codigoOriginal);
-            Console.WriteLine("\n");
+
+                Console.WriteLine("Texto convertido:");
+                Console.WriteLine("\n");
+                Console.WriteLine("\n");
+                Console.WriteLine("\n");
+                Console.WriteLine(tipoPeca);
+                Console.WriteLine("\n");
+                Console.WriteLine("Montadoras: ");
+                Console.WriteLine("\n");
+                Console.WriteLine(textoConv);
+                Console.WriteLine("Código da Peça: ");
+                Console.WriteLine(codigoPeca);
+                Console.WriteLine("\n");
+                Console.WriteLine("SKU: " + codigoPeca + " " + origSKU);
+                Console.WriteLine("Código Original: ");
+                Console.WriteLine(codigoOriginal);
+                Console.WriteLine("\n");
                 if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
                 {
                     Console.WriteLine("Marca: WEGA - Peça Genuína");
                 }
-                else
+                else if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall" || catalogo == "Original" || catalogo == "original" || catalogo == "ORIGINAL")
                 {
                     Console.WriteLine("Marca: ORIGINALL - Peça Genuína");
                 }
-            Console.WriteLine("\n");
-            Console.WriteLine("Intercambialidade: ");
-            Console.WriteLine("\n");
-            Console.WriteLine("Observação:");
-            Console.WriteLine("Altura: ");
-            Console.WriteLine("Comprimento:");
-            Console.WriteLine("Largura:");
-            Console.WriteLine("Diâmetro Externo: ");
-            Console.WriteLine("Diâmetro Interno: ");
+                else if (catalogo == "Tecfil" || catalogo == "tecfil" || catalogo == "TECFIL" || catalogo == "TecFil")
+                {
+                    Console.WriteLine("Marca: TECFIL- Peça Genuína");
+
+                }
+                Console.WriteLine("\n");
+                Console.WriteLine("Intercambialidade: ");
+                Console.WriteLine("\n");
+                Console.WriteLine("Observação:");
+                Console.WriteLine("Altura: ");
+                Console.WriteLine("Comprimento:");
+                Console.WriteLine("Largura:");
+                Console.WriteLine("Diâmetro Externo: ");
+                Console.WriteLine("Diâmetro Interno: ");
                 contPecas++;
             }
 
@@ -122,8 +139,8 @@ namespace ConversorDeCaracteresEspeciais
         */
         static string ConversorWega(StringBuilder sb)
         {
-             sb.Replace("-->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
-             return sb.ToString();
+            sb.Replace("-->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
+            return sb.ToString();
         }
         static string ConversorOriginal(StringBuilder sb)
         {
@@ -152,7 +169,13 @@ namespace ConversorDeCaracteresEspeciais
             }
             return sb.ToString();
         }
-    }/*
+        static string ConversorTecfil(StringBuilder sb)
+        {
+            sb.Replace(">", "em diante").Replace("//", "-").Replace("/", ". ").Replace("--", "até");
+            return sb.ToString();
+        }
+    }
+        /*
       * if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
     {
         sb.Append(linha.Replace(">", "até", primeiraPosicao, 1).Replace(">", "em diante", proximaPosicao, 1));
@@ -163,4 +186,4 @@ namespace ConversorDeCaracteresEspeciais
     }
 */
 
-}
+    }
