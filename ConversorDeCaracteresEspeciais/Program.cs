@@ -134,8 +134,8 @@ namespace ConversorDeCaracteresEspeciais
         /*
             Gol 1.8 (Sport , GTI) OL 203 // 15 >
             Gol 1.8 (Sport , GTI) // 06 > 10
-            Accelo - 915 C - OM 904 LA // 2007 --> 
-            Accelo - 915 C - OM 904 LA // 2007 --> 
+            Accelo - 915 C - OM 904 LA // 12/2007 >
+            Accelo - 915 C - OM 904 LA // 05/2007 > 11/2009
             Sprinter 413 - OM 611 2.2L // 2002 --> 
             Sprinter 411 - OM 611 2.2L // 2002 --> 
         */
@@ -171,24 +171,48 @@ namespace ConversorDeCaracteresEspeciais
             }
             return sb.ToString();
         }
-        static string ConversorTecfil(StringBuilder sb)
+        static string ConverteBarra(string linha)
         {
-            string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            
-            foreach (string linha in linhas)
+            var sb = new StringBuilder();
+            for (int i = 0; i < linha.Length; i++)
             {
-                int dezNonosTexto= ((linha.Length / 10) * 9);
-                sb.Replace(">", "em diante").Replace("//", "-").Replace("--", "até");
-                if (linha.IndexOf('/') < dezNonosTexto)
+                if (linha[i].Equals('/') && linha[i + 1].Equals('/'))
                 {
-                    sb.Replace("/", " , ");
+                    sb.Append('-');
+                    sb.Remove(linha[i + 1] , 1);
+
                 }
-                else if (linha.IndexOf('/') > dezNonosTexto)
+                else if (linha[i].Equals('/'))
                 {
-                    sb.Replace("/", ". ");
+                    if (char.IsDigit(linha[i - 1]) && char.IsDigit(linha[i + 1]))
+                    {
+                        sb.Append('.');
+                        sb.Replace(">", "até");
+                    }
+                    else
+                    {
+                        sb.Append(",");
+                        sb.Replace(">", "em diante");
+                    }
+                }                
+                else
+                {
+                    sb.Append(linha[i]);
                 }
             }
             return sb.ToString();
+        }
+        static string ConversorTecfil(StringBuilder sb)
+        {
+            string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string armazenaConversao = "";
+
+            foreach (string linha in linhas)
+            {
+                int ultimaPosicao = linha.LastIndexOf('>');
+                armazenaConversao += ConverteBarra(linha);
+            }
+            return armazenaConversao;
         }
     }
         /*
