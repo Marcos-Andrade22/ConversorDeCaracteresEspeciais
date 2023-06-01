@@ -42,6 +42,18 @@ namespace ConversorDeCaracteresEspeciais
                         textoConv += textoConvertido + "\n";
                     }
                 }
+                else if (catalogo == "KYB" || catalogo == "kyb")
+                {
+                    for (int i = 0; i < linhas; i++)
+                    {
+                        Console.WriteLine("Digite um texto:");
+                        texto = Console.ReadLine();
+                        vet[i] = new StringBuilder();
+                        vet[i].Append(texto);
+                        string textoConvertido = ConversorKYB(vet[i]);
+                        textoConv += textoConvertido + "\n";
+                    }
+                }
                 else if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall" || catalogo == "Original" || catalogo == "original" || catalogo == "ORIGINAL")
                 {
                     for (int k = 0; k < linhas; k++)
@@ -134,8 +146,8 @@ namespace ConversorDeCaracteresEspeciais
         /*
             Gol 1.8 (Sport , GTI) OL 203 // 15 >
             Gol 1.8 (Sport , GTI) // 06 > 10
-            Accelo - 915 C - OM 904 LA // 12/2007 >
-            Accelo - 915 C - OM 904 LA // 05/2007 > 11/2009
+            Accelo - 915 C - (Sedan) OM 904 LA // 12/2007 >
+            Accelo - 915 C -(Sport / GTI / GLI / Coupe )OM 904 LA // 05/2007 > 11/2009
             Sprinter 413 - OM 611 2.2L // 2002 --> 
             Sprinter 411 - OM 611 2.2L // 2002 --> 
         */
@@ -176,13 +188,7 @@ namespace ConversorDeCaracteresEspeciais
             var sb = new StringBuilder();
             for (int i = 0; i < linha.Length; i++)
             {
-                if (linha[i].Equals('/') && linha[i + 1].Equals('/'))
-                {
-                    sb.Append('-');
-                    sb.Remove(linha[i + 1] , 1);
-
-                }
-                else if (linha[i].Equals('/'))
+                if (linha[i].Equals('/'))
                 {
                     if (char.IsDigit(linha[i - 1]) && char.IsDigit(linha[i + 1]))
                     {
@@ -194,11 +200,16 @@ namespace ConversorDeCaracteresEspeciais
                         sb.Append(",");
                         sb.Replace(">", "em diante");
                     }
-                }                
+                }
+                else if (linha[i].Equals("/") && linha[i + 1].Equals("/"))
+                {
+                    sb.Replace("//", "-");
+                }
                 else
                 {
                     sb.Append(linha[i]);
                 }
+
             }
             return sb.ToString();
         }
@@ -214,16 +225,22 @@ namespace ConversorDeCaracteresEspeciais
             }
             return armazenaConversao;
         }
+
+        static string ConversorKYB(StringBuilder sb)
+        {
+            sb.Replace("...", "até");
+            return sb.ToString();
+        }
     }
-        /*
-      * if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
-    {
-        sb.Append(linha.Replace(">", "até", primeiraPosicao, 1).Replace(">", "em diante", proximaPosicao, 1));
-    }
-    else
-    {
-        sb.Append(linha);
-    }
+    /*
+  * if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
+{
+    sb.Append(linha.Replace(">", "até", primeiraPosicao, 1).Replace(">", "em diante", proximaPosicao, 1));
+}
+else
+{
+    sb.Append(linha);
+}
 */
 
-    }
+}
