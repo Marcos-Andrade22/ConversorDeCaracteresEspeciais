@@ -110,7 +110,10 @@ namespace ConversorDeCaracteresEspeciais
                 Console.WriteLine(codigoPeca);
                 Console.WriteLine("\n");
                 Console.WriteLine("SKU: " + codigoPeca + " " + origSKU);
+                if (qtCodOri > 0)
+                {
                 Console.WriteLine("Código Original: ");
+                }
                 Console.WriteLine(codigoOriginal);
                 Console.WriteLine("\n");
                 if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
@@ -123,18 +126,33 @@ namespace ConversorDeCaracteresEspeciais
                 }
                 else if (catalogo == "Tecfil" || catalogo == "tecfil" || catalogo == "TECFIL" || catalogo == "TecFil")
                 {
-                    Console.WriteLine("Marca: TECFIL- Peça Genuína");
+                    Console.WriteLine("Marca: TECFIL - Peça Genuína");
+
+                }
+                else if (catalogo == "KYB" || catalogo == "kyb" || catalogo == "Kyb")
+                {
+                    Console.WriteLine("Marca: KYB - Peça Genuína");
 
                 }
                 Console.WriteLine("\n");
                 Console.WriteLine("Intercambialidade: ");
                 Console.WriteLine("\n");
                 Console.WriteLine("Observação:");
+                if (catalogo == "KYB" || catalogo == "kyb" || catalogo == "Kyb")
+                {
+                    Console.WriteLine("Dimensional Aberto: ");
+                    Console.WriteLine("Dimensional Fechado: ");
+                    Console.WriteLine("Estrutura: ");
+                }
+                else
+                {
                 Console.WriteLine("Altura: ");
                 Console.WriteLine("Comprimento:");
                 Console.WriteLine("Largura:");
                 Console.WriteLine("Diâmetro Externo: ");
                 Console.WriteLine("Diâmetro Interno: ");
+                }
+;
                 contPecas++;
             }
 
@@ -228,9 +246,11 @@ namespace ConversorDeCaracteresEspeciais
 
         static string ConversorKYB(StringBuilder sb)
         {
-            sb.Replace("...", "até");
+            sb.Replace("/...", " em diante");
+            sb.Replace("...", " até ");
             return sb.ToString();
         }
+        //catalogo monroe
     }
     /*
   * if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
