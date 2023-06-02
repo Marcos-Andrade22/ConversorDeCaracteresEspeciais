@@ -176,13 +176,13 @@ namespace ConversorDeCaracteresEspeciais
             
             foreach (string linha in linhas)
             {
-                int dezNonosTexto= ((linha.Length / 10) * 9);
+                int noveDecimos= Convert.ToInt32(linha.Length * 0.9);
                 sb.Replace(">", "em diante").Replace("//", "-").Replace("--", "até");
-                if (linha.IndexOf('/') < dezNonosTexto)
+                if (linha.IndexOf('/') < noveDecimos)
                 {
                     sb.Replace("/", " , ");
                 }
-                else if (linha.IndexOf('/') > dezNonosTexto)
+                else if (linha.IndexOf('/') > noveDecimos)
                 {
                     sb.Replace("/", ". ");
                 }
