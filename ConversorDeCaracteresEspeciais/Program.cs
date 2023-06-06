@@ -78,18 +78,6 @@ namespace ConversorDeCaracteresEspeciais
                         textoConv += textoConvertido + "\n";
                     }
                 }
-                else if (catalogo == "Cofap" || catalogo == "CoFap" || catalogo == "cofap" || catalogo == "COFAP" || catalogo == "COFap")
-                {
-                    for (int i = 0; i < linhas; i++)
-                    {
-                        Console.WriteLine("Digite um texto:");
-                        texto = Console.ReadLine();
-                        vet[i] = new StringBuilder();
-                        vet[i].Append(texto);
-                        string textoConvertido = ConversorCofap(vet[i]);
-                        textoConv += textoConvertido + "\n";
-                    }
-                }
                 Console.WriteLine("Digite o Código da Peça: ");
                 codigoPeca = Console.ReadLine();
                 Console.WriteLine("Quantos Códigos Originais Existem nessa peça?");
@@ -120,7 +108,7 @@ namespace ConversorDeCaracteresEspeciais
                 Console.WriteLine(textoConv);
                 Console.WriteLine("Código da Peça: ");
                 Console.WriteLine(codigoPeca);
-                Console.WriteLine("\n");                
+                Console.WriteLine("\n");
                 Console.WriteLine("SKU: " + codigoPeca + " " + origSKU);
                 if (qtCodOri > 0)
                 {
@@ -161,18 +149,10 @@ namespace ConversorDeCaracteresEspeciais
                 Console.WriteLine("Altura: ");
                 Console.WriteLine("Comprimento:");
                 Console.WriteLine("Largura:");
-                if (catalogo == "KYB" || catalogo == "kyb")
-                {
-                    Console.WriteLine("Posição: ");
-                    Console.WriteLine("Lado: ");
-                    Console.WriteLine("Dimensional Aberto(mm): ");
-                    Console.WriteLine("Dimensional Fechado(mm): ");
-                }
-                else
-                {
                 Console.WriteLine("Diâmetro Externo: ");
                 Console.WriteLine("Diâmetro Interno: ");
                 }
+;
                 contPecas++;
             }
 
@@ -189,6 +169,38 @@ namespace ConversorDeCaracteresEspeciais
             Sprinter 413 - OM 611 2.2L // 2002 --> 
             Sprinter 411 - OM 611 2.2L // 2002 --> 
         */
+        static string ConversorWega(StringBuilder sb)
+        {
+            sb.Replace("-->", "em diante").Replace("//", "-").Replace("/", " , ").Replace("--", "até");
+            return sb.ToString();
+        }
+        static string ConversorOriginal(StringBuilder sb)
+        {
+            string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string linha in linhas)
+            {
+                int primeiraPosicao = linha.IndexOf('>');
+                int ultimaPosicao = linha.LastIndexOf('>');
+                int proximaPosicao = linha.IndexOf('>', primeiraPosicao + 1);
+                //index do '>' nao pode ser negativo
+                //esse if quer dizer que o '>' esta entre dois termos
+                Console.WriteLine("Index Of: {0}", primeiraPosicao);
+                Console.WriteLine("Last Index Of: {0}", ultimaPosicao);
+                if (primeiraPosicao >= 0)
+                {
+                    if (ultimaPosicao == linha.Length - 1)
+                    {
+                        sb.Replace(">", "em diante");
+                    }
+                    else
+                    {
+                        sb.Replace(">", "até");
+                    }
+
+                }
+            }
+            return sb.ToString();
+        }
         static string ConverteBarra(string linha)
         {
             var sb = new StringBuilder();
@@ -219,68 +231,6 @@ namespace ConversorDeCaracteresEspeciais
             }
             return sb.ToString();
         }
-        static string ConvertePonto(string linha)
-        {
-            var sb = new StringBuilder();
-            for (int i = 0; i < linha.Length; i++)
-            {
-                if (linha[i].Equals("..."))
-                {
-                    if (char.IsDigit(linha[i - 1]) && char.IsDigit(linha[i + 1]))
-                    {
-                        sb.Append('.');
-                        sb.Replace("...", "até");
-                    }
-                    else
-                    {
-                        sb.Append(",");
-                        sb.Replace("...", "em diante");
-                    }
-                }
-                else if (linha[i].Equals("/") && linha[i + 1].Equals("/"))
-                {
-                    sb.Replace("//", "-");
-                }
-                else
-                {
-                    sb.Append(linha[i]);
-                }
-
-            }
-            return sb.ToString();
-        }
-        static string ConversorWega(StringBuilder sb)
-        {
-            sb.Replace("-->", "em diante").Replace("//", "-").Replace("/", ",").Replace("--", "até");
-            return sb.ToString();
-        }
-        static string ConversorOriginal(StringBuilder sb)
-        {
-            string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string linha in linhas)
-            {
-                int primeiraPosicao = linha.IndexOf('>');
-                int ultimaPosicao = linha.LastIndexOf('>');
-                int proximaPosicao = linha.IndexOf('>', primeiraPosicao + 1);
-                //index do '>' nao pode ser negativo
-                //esse if quer dizer que o '>' esta entre dois termos
-                Console.WriteLine("Index Of: {0}", primeiraPosicao);
-                Console.WriteLine("Last Index Of: {0}", ultimaPosicao);
-                if (primeiraPosicao >= 0)
-                {
-                    if (ultimaPosicao == linha.Length - 1)
-                    {
-                        sb.Replace(">", "em diante");
-                    }
-                    else
-                    {
-                        sb.Replace(">", "até");
-                    }
-
-                }
-            }
-            return sb.ToString();
-        }
         static string ConversorTecfil(StringBuilder sb)
         {
             string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
@@ -296,31 +246,11 @@ namespace ConversorDeCaracteresEspeciais
 
         static string ConversorKYB(StringBuilder sb)
         {
-            sb.Replace("... ...", "em diante");
-            sb.Replace("...", "até");
-            string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            string armazenaConversao = "";
-
-            foreach (string linha in linhas)
-            {
-                int ultimaPosicao = linha.LastIndexOf('>');
-                armazenaConversao += ConverteBarra(linha);
-            }
-            return armazenaConversao;
+            sb.Replace("/...", " em diante");
+            sb.Replace("...", " até ");
             return sb.ToString();
         }
-        static string ConversorCofap(StringBuilder sb)
-        {
-            string[] linhas = sb.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            string armazenaConversao = "";
-
-            foreach (string linha in linhas)
-            {
-                int ultimaPosicao = linha.LastIndexOf("...");
-                armazenaConversao += ConvertePonto(linha);
-            }
-            return armazenaConversao;
-        }
+        //catalogo monroe
     }
     /*
   * if (primeiraPosicao >= 0 && proximaPosicao > primeiraPosicao && proximaPosicao < ultimaPosicao)
