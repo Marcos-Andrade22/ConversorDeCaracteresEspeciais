@@ -95,6 +95,31 @@ namespace ConversorDeCaracteresEspeciais
                 Console.WriteLine("Digite o tipo da peça(Exemplo: Filtro de Combustível) : ");
                 tipoPeca = Console.ReadLine();
 
+                string marca;
+                Console.WriteLine("Qual a marca?");
+                marca = Console.ReadLine();
+                string marcaGenuina = "";
+                Console.WriteLine("A marca é genuína??");
+                marcaGenuina = Console.ReadLine();
+
+                string intercambialidade;
+                Console.WriteLine("Possui Intercambialidade?");
+                intercambialidade = Console.ReadLine();
+                if (intercambialidade == "s" || intercambialidade == "sim" || intercambialidade == "Sim")
+                {
+                    intercambialidade = "";
+                    Console.WriteLine("Quantas Intercambialidades?");
+                    int quantasIntercambialidades = Convert.ToInt32(Console.ReadLine());
+                    for (int w = 0; w < quantasIntercambialidades; w++)
+                    {
+                        Console.WriteLine("Digite as intercambialidades:");
+                        texto = Console.ReadLine();
+                        vet[w] = new StringBuilder();
+                        vet[w].Append(texto);
+                        string textoConvertido = ConversorKYB(vet[w]);
+                        intercambialidade += textoConvertido + "\n";
+                    }
+                }
 
 
                 Console.WriteLine("Texto convertido:");
@@ -112,30 +137,42 @@ namespace ConversorDeCaracteresEspeciais
                 Console.WriteLine("SKU: " + codigoPeca + " " + origSKU);
                 if (qtCodOri > 0)
                 {
-                Console.WriteLine("Código Original: ");
+                    Console.WriteLine("Código Original: ");
                 }
                 Console.WriteLine(codigoOriginal);
                 Console.WriteLine("\n");
-                if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
+                Console.WriteLine();
+                if (marcaGenuina == "s" || marcaGenuina == "sim" || marcaGenuina == "Sim")
                 {
-                    Console.WriteLine("Marca: WEGA - Peça Genuína");
+                    marcaGenuina = "- Marca Genuína";
                 }
-                else if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall" || catalogo == "Original" || catalogo == "original" || catalogo == "ORIGINAL")
+                else
                 {
-                    Console.WriteLine("Marca: ORIGINALL - Peça Genuína");
+                    marcaGenuina = "";
                 }
-                else if (catalogo == "Tecfil" || catalogo == "tecfil" || catalogo == "TECFIL" || catalogo == "TecFil")
-                {
-                    Console.WriteLine("Marca: TECFIL - Peça Genuína");
+                Console.WriteLine("Marca: " + marca + " " + marcaGenuina);
 
-                }
-                else if (catalogo == "KYB" || catalogo == "kyb" || catalogo == "Kyb")
-                {
-                    Console.WriteLine("Marca: KYB - Peça Genuína");
+                /* if (catalogo == "wega" || catalogo == "WEGA" || catalogo == "Wega")
+                 {
+                     Console.WriteLine("Marca: WEGA - Peça Genuína");
+                 }
+                 else if (catalogo == "originall" || catalogo == "ORIGINALL" || catalogo == "originALL" || catalogo == "Originall" || catalogo == "Original" || catalogo == "original" || catalogo == "ORIGINAL")
+                 {
+                     Console.WriteLine("Marca: ORIGINALL");
+                 }
+                 else if (catalogo == "Tecfil" || catalogo == "tecfil" || catalogo == "TECFIL" || catalogo == "TecFil")
+                 {
+                     Console.WriteLine("Marca: TECFIL - Peça Genuína");
 
-                }
+                 }
+                 else if (catalogo == "KYB" || catalogo == "kyb" || catalogo == "Kyb")
+                 {
+                     Console.WriteLine("Marca: KYB - Peça Genuína");
+
+                 }*/
                 Console.WriteLine("\n");
                 Console.WriteLine("Intercambialidade: ");
+                Console.WriteLine(intercambialidade);
                 Console.WriteLine("\n");
                 Console.WriteLine("Observação:");
                 if (catalogo == "KYB" || catalogo == "kyb" || catalogo == "Kyb")
@@ -146,11 +183,11 @@ namespace ConversorDeCaracteresEspeciais
                 }
                 else
                 {
-                Console.WriteLine("Altura: ");
-                Console.WriteLine("Comprimento:");
-                Console.WriteLine("Largura:");
-                Console.WriteLine("Diâmetro Externo: ");
-                Console.WriteLine("Diâmetro Interno: ");
+                    Console.WriteLine("Altura: ");
+                    Console.WriteLine("Comprimento:");
+                    Console.WriteLine("Largura:");
+                    Console.WriteLine("Diâmetro Externo: ");
+                    Console.WriteLine("Diâmetro Interno: ");
                 }
 ;
                 contPecas++;
@@ -262,5 +299,28 @@ else
     sb.Append(linha);
 }
 */
+
+    /*
+1-
+2-
+3-
+4-
+5-
+6-
+7-
+8-
+9-
+10-
+11-
+12-
+13-
+14-
+15-
+16-
+17-
+18-
+19-
+20-
+     */
 
 }
